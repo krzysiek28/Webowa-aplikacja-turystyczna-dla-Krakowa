@@ -1,0 +1,7 @@
+<!-- webapp/WEB-INF/web.xml -->
+<web-app id="bubu" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee"
+         version="3.5">
+</web-app>
+
