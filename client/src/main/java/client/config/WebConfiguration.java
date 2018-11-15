@@ -1,5 +1,7 @@
 package client.config;
 
+import client.user.authentication.LoginInterceptor;
+import client.user.authentication.UserAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.handler.MappedInterceptor;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
@@ -26,6 +29,19 @@ import javax.annotation.PostConstruct;
 @PropertySource("classpath:application.properties")
 
 public class WebConfiguration extends WebMvcConfigurerAdapter {
+
+    @Autowired
+    UserAuthenticationService userAuthenticationService;
+
+    @Bean
+    public MappedInterceptor myInterceptor()
+    {
+        String[] exclude = new String[3];
+        exclude[0] = "/";
+        exclude[1] = "/loginPage";
+        exclude[2] = "/static/**";  //TODO add new exceptions
+        return new MappedInterceptor(null,exclude, new LoginInterceptor(userAuthenticationService));
+    }
 
     @Bean
     public FilterRegistrationBean filterRegistrationBean() {

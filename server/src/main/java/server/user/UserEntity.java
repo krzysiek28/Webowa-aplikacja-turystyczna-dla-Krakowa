@@ -1,4 +1,4 @@
-package user;
+package server.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -48,7 +48,7 @@ public class UserEntity {
         this.username = username;
     }
 
-   @JsonIgnore
+    @JsonIgnore
     public String getPassword() {
         return password;
     }

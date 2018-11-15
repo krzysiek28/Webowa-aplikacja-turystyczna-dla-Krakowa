@@ -1,9 +1,9 @@
-package security;
+package server.security;
 
 import io.jsonwebtoken.Jwts;
 import org.springframework.stereotype.Service;
-import user.UserEntity;
-import user.UserRepository;
+import server.user.UserEntity;
+import server.user.UserRepository;
 
 @Service
 public class AuthorizationFilter {

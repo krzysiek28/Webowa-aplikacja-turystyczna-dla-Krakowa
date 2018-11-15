@@ -6,13 +6,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
 @Controller
-public class MyController {
+public class GeneralController {
 
     @Autowired
     private RestTemplate restTemplate;
 
     @RequestMapping(value = "/")
-    public String homePage(){
-        return "home";
+    public String initialPage(){
+        return "initialPage";
     }
+
+
 }
