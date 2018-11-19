@@ -23,6 +23,11 @@ public class SignController {
         return "loginPage";
     }
 
+    @RequestMapping(value = "/registrationPage")
+    public String registrationPage() {
+        return "registrationPage";
+    }
+
     @RequestMapping(value = "/homePage")
     public String homePage(ModelMap model) throws URISyntaxException, JSONException, IOException {
         model.addAttribute("authservice", userAuthenticationService);
