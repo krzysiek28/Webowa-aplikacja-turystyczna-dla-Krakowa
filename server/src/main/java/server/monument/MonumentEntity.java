@@ -86,4 +86,9 @@ public class MonumentEntity {
     public void setOpeningHours(String openingHours) {
         this.openingHours = openingHours;
     }
+
+    public boolean validate(){
+        return !(this.getCoordinate() == null || this.getCost()<0 || this.getDescription().isEmpty() || this.getKind() == null
+                || this.getName().isEmpty() || this.getOpeningHours().isEmpty());
+    }
 }

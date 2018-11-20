@@ -68,4 +68,8 @@ public class CommentEntity {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public boolean validate(){
+        return !(this.getDescription().isEmpty() || this.getMonument()==null || (this.getRate()<0 && this.getRate()>5) || this.getUser()==null);
+    }
 }
