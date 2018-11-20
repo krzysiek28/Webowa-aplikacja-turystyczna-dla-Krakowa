@@ -1,6 +1,8 @@
 package server.user;
 
 import org.jsoup.Jsoup;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import server.security.SecurityUtils;
@@ -14,6 +16,9 @@ public class UserController {
     private final UserService userService;
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     public UserController(UserService userService, UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userService = userService;
@@ -54,8 +59,10 @@ public class UserController {
         userService.updateUser(userId, user);
     }
 
-    @RequestMapping(value = "/{userId}", method = RequestMethod.DELETE)
-    public void deleteUser(@PathVariable Integer userId) {
-        userService.deleteUser(userId);
+    //change @PathVariable to userId
+    @RequestMapping(value = "/{userName}", method = RequestMethod.DELETE)
+    public void deleteUser(@PathVariable String userName) {
+        String userId = jdbcTemplate.queryForObject("SELECT id from users where username=" + "\'" + userName + "\'" + ";", String.class);
+        userService.deleteUser(Integer.parseInt(userId));
     }
 }

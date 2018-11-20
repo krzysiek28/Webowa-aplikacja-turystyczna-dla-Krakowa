@@ -36,11 +36,13 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
     @Bean
     public MappedInterceptor myInterceptor()
     {
-        String[] exclude = new String[4];
+        String[] exclude = new String[6];
         exclude[0] = "/";
         exclude[1] = "/loginPage";
-        exclude[2] = "/registrationPage";
-        exclude[3] = "/static/**";  //TODO add new exceptions
+        exclude[2] = "/login";
+        exclude[3] = "/registrationPage";
+        exclude[4] = "/addUser";
+        exclude[5] = "/static/**";  //TODO add new exceptions
         return new MappedInterceptor(null,exclude, new LoginInterceptor(userAuthenticationService));
     }
 

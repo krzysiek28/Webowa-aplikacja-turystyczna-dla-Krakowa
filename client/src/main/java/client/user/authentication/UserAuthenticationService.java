@@ -30,9 +30,7 @@ public class UserAuthenticationService {
                     .parseClaimsJws(rawToken)
                     .getBody();
         } catch (Exception e) {}
-        //TODO verify type of user content
         this.username = user[0];
-        this.userId = Integer.parseInt(user[0]);
     }
 
     public String getUsername() {

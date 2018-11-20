@@ -31,7 +31,6 @@ public class UserService {
 
         ResponseEntity<String> response = restTemplateHCCHRF.exchange(uri, HttpMethod.POST, request, String.class);
         String key = response.getHeaders().get("Authorization").get(0).toString();
-        System.out.println(response.getBody());
         userAuthenticationService.setToken(key);
     }
 
@@ -59,9 +58,7 @@ public class UserService {
     }
 
     public void deleteUser() throws URISyntaxException, JSONException {
-        URI uri = new URI("http://localhost:8384/users/"+userAuthenticationService.getUserId());
-        System.out.println(userAuthenticationService.getUserId());
-        System.out.println(uri);
+        URI uri = new URI("http://localhost:8384/users/"+userAuthenticationService.getUsername());
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer "+userAuthenticationService.getRawToken());

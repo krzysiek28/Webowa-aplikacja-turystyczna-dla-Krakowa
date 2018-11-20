@@ -44,7 +44,40 @@
 </nav>
 
 
-<!-- space to add welcome page, getting started-->
+<%--<div class="card text-center" style="alignment: left; width: 30%; left: 5%; top: 50px">--%>
+    <%--<div class="card-header">--%>
+        <%--<ul class="nav nav-tabs card-header-tabs">--%>
+                <%--<li class="nav-item">--%>
+                    <%--<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>--%>
+                <%--</li>--%>
+                <%--<li class="nav-item">--%>
+                    <%--<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>--%>
+                <%--</li>--%>
+            <%--<li class="nav-item">--%>
+                <%--<a class="nav-link active" onclick="status=login">Logowanie</a>--%>
+            <%--</li>--%>
+            <%--<li class="nav-item">--%>
+                <%--<a class="nav-link" href="/loginPage">Rejestracja</a>--%>
+            <%--</li>--%>
+        <%--</ul>--%>
+    <%--</div>--%>
+    <%--<div class="card-body">--%>
+        <%--&lt;%&ndash;<c:if test="${param.status == 'login'}">&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<div class="alert alert-danger">&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<p>Logowanie</p>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;</c:if>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;<c:if test="${param.status == 'registration'}">&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<div class="alert alert-danger">&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<p>Rejestracja</p>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;</c:if>&ndash;%&gt;--%>
+
+        <%--&lt;%&ndash;<h5 class="card-title">Special title treatment</h5>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;<a href="#" class="btn btn-primary">Go somewhere</a>&ndash;%&gt;--%>
+    <%--</div>--%>
+<%--</div>--%>
 
 </body>
 </html>

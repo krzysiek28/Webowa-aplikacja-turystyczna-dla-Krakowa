@@ -10,8 +10,7 @@ public class UserModel {
 
     public UserModel(){}
 
-    public UserModel(Integer id, String username, String password, String email, String role, Boolean enabled) {
-        this.id = id;
+    public UserModel(String username, String password, String email, String role, Boolean enabled) {
         this.username = username;
         this.password = password;
         this.email = email;
