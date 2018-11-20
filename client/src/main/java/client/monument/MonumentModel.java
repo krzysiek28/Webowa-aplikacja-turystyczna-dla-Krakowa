@@ -1,18 +1,11 @@
-package server.monument;
+package client.monument;
 
-import server.monument.model.Coordinates;
-import server.monument.model.MonumentKind;
+import client.monument.model.Coordinates;
+import client.monument.model.MonumentKind;
 
-import javax.persistence.*;
+public class MonumentModel {
 
-@Entity
-@Table(name = "Monuments")
-public class MonumentEntity {
-
-    @Id
-    @GeneratedValue
     private Integer id;
-    @Column(unique = true)
     private String name;
     private MonumentKind kind;
     private String description;
@@ -20,9 +13,10 @@ public class MonumentEntity {
     private Integer cost;
     private String openingHours;
 
-    public MonumentEntity() {}
+    public MonumentModel() {
+    }
 
-    public MonumentEntity(String name, MonumentKind kind, String description, Coordinates coordinate, Integer cost, String openingHours) {
+    public MonumentModel(String name, MonumentKind kind, String description, Coordinates coordinate, Integer cost, String openingHours) {
         this.name = name;
         this.kind = kind;
         this.description = description;
