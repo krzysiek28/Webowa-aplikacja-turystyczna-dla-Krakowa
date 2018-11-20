@@ -14,15 +14,15 @@ public class MonumentEntity {
     private Integer id;
     @Column(unique = true)
     private String name;
-    private MonumentKind kind;
+    private String kind;
     private String description;
-    private Coordinates coordinate;
+    private String coordinate;
     private Integer cost;
     private String openingHours;
 
     public MonumentEntity() {}
 
-    public MonumentEntity(String name, MonumentKind kind, String description, Coordinates coordinate, Integer cost, String openingHours) {
+    public MonumentEntity(String name, String kind, String description, String coordinate, Integer cost, String openingHours) {
         this.name = name;
         this.kind = kind;
         this.description = description;
@@ -47,28 +47,12 @@ public class MonumentEntity {
         this.name = name;
     }
 
-    public MonumentKind getKind() {
-        return kind;
-    }
-
-    public void setKind(MonumentKind kind) {
-        this.kind = kind;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Coordinates getCoordinate() {
-        return coordinate;
-    }
-
-    public void setCoordinate(Coordinates coordinate) {
-        this.coordinate = coordinate;
     }
 
     public Integer getCost() {
@@ -87,8 +71,24 @@ public class MonumentEntity {
         this.openingHours = openingHours;
     }
 
+    public String getKind() {
+        return kind;
+    }
+
+    public void setKind(String kind) {
+        this.kind = kind;
+    }
+
+    public String getCoordinate() {
+        return coordinate;
+    }
+
+    public void setCoordinate(String coordinate) {
+        this.coordinate = coordinate;
+    }
+
     public boolean validate(){
-        return !(this.getCoordinate() == null || this.getCost()<0 || this.getDescription().isEmpty() || this.getKind() == null
+        return !(this.getCoordinate().isEmpty() || this.getCost()<0 || this.getDescription().isEmpty() || this.getKind().isEmpty()
                 || this.getName().isEmpty() || this.getOpeningHours().isEmpty());
     }
 }

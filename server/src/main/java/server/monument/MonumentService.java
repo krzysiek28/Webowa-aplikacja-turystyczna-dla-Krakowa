@@ -1,7 +1,6 @@
 package server.monument;
 
 import org.springframework.stereotype.Service;
-import server.monument.model.MonumentKind;
 
 import java.util.List;
 
@@ -25,7 +24,7 @@ public class MonumentService {
         return monumentRepository.findAll();
     }
 
-    public List<MonumentEntity> getMonumentsByKind(MonumentKind kind){
+    public List<MonumentEntity> getMonumentsByKind(String kind){
         return monumentRepository.findMonumentEntitiesByKind(kind);
     }
 

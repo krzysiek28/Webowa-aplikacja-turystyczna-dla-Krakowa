@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import server.monument.model.MonumentKind;
 
 @Controller
 @RequestMapping("/monuments")
@@ -24,7 +23,7 @@ public class MonumentController {
 
     //usunac i zrobic filtry po stronie serwera w razie problemow.
     @RequestMapping(value = "/{kind}", method = RequestMethod.GET)
-    public void getMonumentsByKind(@PathVariable MonumentKind kind) {
+    public void getMonumentsByKind(@PathVariable String kind) {
         monumentService.getMonumentsByKind(kind);
     }
 
