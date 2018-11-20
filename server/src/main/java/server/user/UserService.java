@@ -1,7 +1,6 @@
 package server.user;
 
 import org.springframework.stereotype.Service;
-import server.comment.CommentRepository;
 
 @Service
 public class UserService {
