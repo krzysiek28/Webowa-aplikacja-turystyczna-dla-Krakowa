@@ -60,9 +60,8 @@ public class UserController {
     }
 
     //change @PathVariable to userId
-    @RequestMapping(value = "/{userName}", method = RequestMethod.DELETE)
-    public void deleteUser(@PathVariable String userName) {
-        String userId = jdbcTemplate.queryForObject("SELECT id from users where username=" + "\'" + userName + "\'" + ";", String.class);
-        userService.deleteUser(Integer.parseInt(userId));
+    @RequestMapping(value = "/{userId}", method = RequestMethod.DELETE)
+    public void deleteUser(@PathVariable Integer userId) {
+        userService.deleteUser(userId);
     }
 }

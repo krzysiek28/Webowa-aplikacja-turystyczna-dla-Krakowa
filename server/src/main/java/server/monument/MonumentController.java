@@ -22,7 +22,7 @@ public class MonumentController {
     }
 
     //usunac i zrobic filtry po stronie serwera w razie problemow.
-    @RequestMapping(value = "/{kind}", method = RequestMethod.GET)
+    @RequestMapping(value = "/kind/{kind}", method = RequestMethod.GET)
     public void getMonumentsByKind(@PathVariable String kind) {
         monumentService.getMonumentsByKind(kind);
     }

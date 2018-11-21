@@ -7,9 +7,9 @@ public class MonumentModel {
 
     private Integer id;
     private String name;
-    private MonumentKind kind;
+    private MonumentKind kind; //translate or change to string
     private String description;
-    private Coordinates coordinate;
+    private Coordinates coordinate; //translate or change to string
     private Integer cost;
     private String openingHours;
 

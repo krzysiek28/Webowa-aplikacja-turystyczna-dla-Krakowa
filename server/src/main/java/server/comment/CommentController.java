@@ -19,18 +19,23 @@ public class CommentController {
         this.authorizationFilter = authorizationFilter;
     }
 
-    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
     public void getAllCommentsByOwner(@PathVariable String userId, @RequestHeader("Authorization") String token) throws UnauthorizedException {
         authorizationFilter.isAuthorizedTo(token, userId, ResourceType.USER);
         commentService.getAllCommentsByOwner(Integer.parseInt(userId));
     }
 
-    @RequestMapping(value = "/{monumentId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/monument/{monumentId}", method = RequestMethod.GET)
     public void getAllCommentsByMonument(@PathVariable String monumentId){
         commentService.getAllCommentsByMonument(Integer.parseInt(monumentId));
     }
 
-    @RequestMapping(value = "/{userId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{commentId}", method = RequestMethod.GET)
+    public void getComment(@PathVariable String commentId){
+        commentService.getComment(Integer.parseInt(commentId));
+    }
+
+    @RequestMapping(value = "/user/{userId}", method = RequestMethod.POST)
     public void addComment(@RequestBody CommentEntity comment, @PathVariable String userId, @RequestHeader("Authorization") String token) throws UnauthorizedException {
         authorizationFilter.isAuthorizedTo(token, userId, ResourceType.USER);
         commentService.addComment(comment);
