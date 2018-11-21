@@ -9,6 +9,22 @@
     <title>Login page</title>
     <link href="<c:url value='/static/css/bootstrap.css' />"  rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
+
+    <script
+            src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script>
+        var map;
+        function initialize() {
+            var mapOptions = {
+                zoom: 14,
+                center: new google.maps.LatLng(50.049683, 19.944544)
+            };
+            map = new google.maps.Map(document.getElementById('map-canvas'),
+                mapOptions);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
 </head>
 
 <body>
@@ -20,7 +36,9 @@
     </button>
 </nav>
 
-<div class="card text-center" style="alignment: left; width: 30%; left: 5%; top: 90px">
+<div id="map-canvas" style="height:1000px; width:1700px; position: relative;"></div>
+
+<div class="card text-center" style="alignment: left; width: 30%; left: 5%; top: 90px; position: absolute;">
     <div class="card-header">
         Logowanie:
     </div>

@@ -27,7 +27,6 @@ public class UserService {
     @Autowired
     RestTemplate restTemplate;
 
-    //TODO fixIt
     public void login(String username, String password) throws URISyntaxException, HttpClientErrorException {
         URI uri = new URI("http://localhost:8384/login");
         HttpHeaders headers = new HttpHeaders();
