@@ -39,6 +39,9 @@ public class AuthorizationFilter {
             case COMMENT:
                 commentAuth(userId, Integer.parseInt(resourceId));
                 break;
+            case MONUMENT:
+                monumentAuth(userId, Integer.parseInt(resourceId));
+                break;
             default:
                 throw new IllegalArgumentException("Blad podczas autoryzacji!");
         }
@@ -56,6 +59,10 @@ public class AuthorizationFilter {
         if ((one == null) || (!one.getUser().getId().equals(userId))){
             throw new UnauthorizedException("Brak pozwolenia!");
         }
+    }
+
+    private void monumentAuth(int userId, int requestComment) throws UnauthorizedException {
+        //do nothing, in the future auth by userRole
     }
 
 }

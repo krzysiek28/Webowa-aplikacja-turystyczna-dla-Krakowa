@@ -1,5 +1,7 @@
 package server.comment;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import server.security.AuthorizationFilter;
@@ -14,29 +16,34 @@ public class CommentController {
 
     private final AuthorizationFilter authorizationFilter;
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
     public CommentController(CommentService commentService, AuthorizationFilter authorizationFilter) {
         this.commentService = commentService;
         this.authorizationFilter = authorizationFilter;
     }
 
-    @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
-    public void getAllCommentsByOwner(@PathVariable String userId, @RequestHeader("Authorization") String token) throws UnauthorizedException {
+    @RequestMapping(value = "/user/{userName}", method = RequestMethod.GET)
+    public void getAllCommentsByOwner(@PathVariable String userName, @RequestHeader("Authorization") String token) throws UnauthorizedException {
+        String userId = jdbcTemplate.queryForObject("SELECT id from users where username=" + "\'" + userName + "\'" + ";", String.class);
         authorizationFilter.isAuthorizedTo(token, userId, ResourceType.USER);
         commentService.getAllCommentsByOwner(Integer.parseInt(userId));
     }
 
     @RequestMapping(value = "/monument/{monumentId}", method = RequestMethod.GET)
-    public void getAllCommentsByMonument(@PathVariable String monumentId){
+    public void getAllCommentsByMonument(@PathVariable String monumentId, @RequestHeader("Authorization") String token){
         commentService.getAllCommentsByMonument(Integer.parseInt(monumentId));
     }
 
     @RequestMapping(value = "/{commentId}", method = RequestMethod.GET)
-    public void getComment(@PathVariable String commentId){
+    public void getComment(@PathVariable String commentId, @RequestHeader("Authorization") String token) {
         commentService.getComment(Integer.parseInt(commentId));
     }
 
-    @RequestMapping(value = "/user/{userId}", method = RequestMethod.POST)
-    public void addComment(@RequestBody CommentEntity comment, @PathVariable String userId, @RequestHeader("Authorization") String token) throws UnauthorizedException {
+    @RequestMapping(value = "/user/{userName}", method = RequestMethod.POST)
+    public void addComment(@RequestBody CommentEntity comment, @PathVariable String userName, @RequestHeader("Authorization") String token) throws UnauthorizedException {
+        String userId = jdbcTemplate.queryForObject("SELECT id from users where username=" + "\'" + userName + "\'" + ";", String.class);
         authorizationFilter.isAuthorizedTo(token, userId, ResourceType.USER);
         commentService.addComment(comment);
     }

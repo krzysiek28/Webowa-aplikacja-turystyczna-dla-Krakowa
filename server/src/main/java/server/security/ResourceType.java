@@ -1,5 +1,5 @@
 package server.security;
 
 public enum ResourceType {
-    USER, COMMENT
+    USER, COMMENT, MONUMENT
 }

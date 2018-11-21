@@ -1,10 +1,7 @@
 package server.monument;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/monuments")
@@ -23,22 +20,22 @@ public class MonumentController {
 
     //usunac i zrobic filtry po stronie serwera w razie problemow.
     @RequestMapping(value = "/kind/{kind}", method = RequestMethod.GET)
-    public void getMonumentsByKind(@PathVariable String kind) {
+    public void getMonumentsByKind(@PathVariable String kind, @RequestHeader("Authorization") String token) {
         monumentService.getMonumentsByKind(kind);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void addMonument(@RequestBody MonumentEntity monument) {
+    public void addMonument(@RequestBody MonumentEntity monument, @RequestHeader("Authorization") String token) {
         monumentService.addMonument(monument);
     }
 
     @RequestMapping(value = "/{monumentId}", method = RequestMethod.PUT)
-    public void updateMonument(@RequestBody MonumentEntity monument, @PathVariable String monumentId) {
+    public void updateMonument(@RequestBody MonumentEntity monument, @PathVariable String monumentId, @RequestHeader("Authorization") String token) {
         monumentService.updateMonument(Integer.parseInt(monumentId), monument);
     }
 
     @RequestMapping(value = "/{monumentId}", method = RequestMethod.DELETE)
-    public void deleteMonument(@PathVariable String monumentId) {
+    public void deleteMonument(@PathVariable String monumentId, @RequestHeader("Authorization") String token) {
         monumentService.deleteMonument(Integer.parseInt(monumentId));
     }
 }
