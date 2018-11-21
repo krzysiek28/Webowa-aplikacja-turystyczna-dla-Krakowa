@@ -1,10 +1,14 @@
 package client.comment;
 
 import client.monument.MonumentModel;
+import client.user.UserModel;
 import client.user.authentication.UserAuthenticationService;
+import client.utils.ClientStore;
 import client.utils.ServiceSupport;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -36,7 +40,7 @@ public class CommentService {
         String userName = userAuthenticationService.getUsername();
         URI uri = new URI(COMMENT_BASE_URL + USER_MAPPING + userName);
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", "Bearer "+userAuthenticationService.getRawToken());
+        headers.set("Authorization", "Bearer " + userAuthenticationService.getRawToken());
         HttpEntity<String> entity = new HttpEntity<String>(headers);
         ResponseEntity<String> data = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -45,14 +49,21 @@ public class CommentService {
                 objectMapper.getTypeFactory().constructCollectionType(List.class, CommentModel.class));
     }
 
-    //todo
-    public void addComment() throws URISyntaxException {
+    public void addComment(MonumentModel monument, Integer rate, String description) throws URISyntaxException, JSONException {
         String userName = userAuthenticationService.getUsername();
         URI uri = new URI(COMMENT_BASE_URL + USER_MAPPING + userName);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set("Authorization", "Bearer "+userAuthenticationService.getRawToken());
-
+        headers.set("Authorization", "Bearer " + userAuthenticationService.getRawToken());
+        UserModel user = ClientStore.getCurrentUser();
+        String commentData = new JSONObject()
+                .put("user", user)
+                .put("monument", monument)
+                .put("rate", rate)
+                .put("description", description)
+                .toString();
+        HttpEntity<String> request = new HttpEntity<String>(commentData, headers);
+        ResponseEntity<CommentModel> response = restTemplate.exchange(uri, HttpMethod.POST, request, CommentModel.class);
     }
 
     public List<CommentModel> getCommentsByMonument(Integer monumentId) throws URISyntaxException, IOException {
@@ -79,13 +90,20 @@ public class CommentService {
                 objectMapper.getTypeFactory().constructType(CommentModel.class));
     }
 
-    //todo
-    public void updateComment(Integer commentId) throws URISyntaxException {
+    public void updateComment(Integer commentId, MonumentModel monument, Integer rate, String description) throws URISyntaxException, JSONException {
         URI uri = new URI(COMMENT_BASE_URL + commentId);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.set("Authorization", "Bearer "+userAuthenticationService.getRawToken());
-
+        UserModel user = ClientStore.getCurrentUser();
+        String commentData = new JSONObject()
+                .put("user", user)
+                .put("monument", monument)
+                .put("rate", rate)
+                .put("description", description)
+                .toString();
+        HttpEntity<String> request = new HttpEntity<String>(commentData, headers);
+        ResponseEntity<CommentModel> response = restTemplate.exchange(uri, HttpMethod.PUT, request, CommentModel.class);
     }
 
     public void deleteComment(Integer commentId) throws URISyntaxException {

@@ -43,25 +43,20 @@ public class UserController {
         response.addHeader(SecurityUtils.HEADER_STRING, SecurityUtils.TOKEN_PREFIX + " " + SecurityUtils.generateToken(user.getUsername()));
     }
 
-    @RequestMapping(value = "/{username}", method = RequestMethod.GET)
-    public UserEntity getUserByUsername(@PathVariable String username) {
-        UserEntity user = userService.getUserByUsername(username);
-        return user;
+    @RequestMapping(value = "/{userName}", method = RequestMethod.GET)
+    public UserEntity getUserByUsername(@PathVariable String userName, @RequestHeader("Authorization") String token) {
+        return userService.getUserByUsername(userName);
     }
 
-    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-    public UserEntity getUser(@PathVariable Integer userId) {
-        return userService.getUser(userId);
+    @RequestMapping(value = "/{userName}", method = RequestMethod.PUT)
+    public void updateUser(@PathVariable Integer userName, @RequestBody UserEntity user){
+        String userId = jdbcTemplate.queryForObject("SELECT id from users where username=" + "\'" + userName + "\'" + ";", String.class);
+        userService.updateUser(Integer.parseInt(userId), user);
     }
 
-    @RequestMapping(value = "/{userId}", method = RequestMethod.PUT)
-    public void updateUser(@PathVariable Integer userId, @RequestBody UserEntity user){
-        userService.updateUser(userId, user);
-    }
-
-    //change @PathVariable to userId
-    @RequestMapping(value = "/{userId}", method = RequestMethod.DELETE)
-    public void deleteUser(@PathVariable Integer userId) {
-        userService.deleteUser(userId);
+    @RequestMapping(value = "/{userName}", method = RequestMethod.DELETE)
+    public void deleteUser(@PathVariable Integer userName) {
+        String userId = jdbcTemplate.queryForObject("SELECT id from users where username=" + "\'" + userName + "\'" + ";", String.class);
+        userService.deleteUser(Integer.parseInt(userId));
     }
 }

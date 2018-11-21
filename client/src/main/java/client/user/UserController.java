@@ -1,5 +1,6 @@
 package client.user;
 
+import client.utils.ClientStore;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.HttpStatusCodeException;
 
+import java.io.IOException;
 import java.net.URISyntaxException;
 
 @Controller
@@ -20,11 +22,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    //TODO fixIt
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loggedPage(@RequestParam("username") String username,
                              @RequestParam("password") String password,
-                             SessionStatus status) throws URISyntaxException, JSONException {
+                             SessionStatus status) throws URISyntaxException, JSONException, IOException {
         try {
             userService.login(username, password);
             status.setComplete();
@@ -32,16 +33,16 @@ public class UserController {
             JSONObject obj = new JSONObject(exception.getResponseBodyAsString());
             String errorMessage = obj.getString("message");
             return "redirect:/loginPage?error=badcredentials&message=" + errorMessage; //fill
-
         }
-        return "redirect:/"; //fill
+        ClientStore.setCurrentUser(userService.getCurrentUser());
+        return "redirect:/homePage";
     }
 
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     public String register(@RequestParam("username") String username,
                            @RequestParam("password") String password,
                            @RequestParam("email") String email,
-                           SessionStatus status) throws URISyntaxException, JSONException {
+                           SessionStatus status) throws URISyntaxException, JSONException, IOException {
         try {
             userService.register(username, password, email);
             status.setComplete();
@@ -62,6 +63,7 @@ public class UserController {
             }
             return "redirect:/registrationPage?error=yes&message=" + errorType;
         }
+        ClientStore.setCurrentUser(userService.getCurrentUser());
         return "redirect:/homePage";
     }
 
@@ -76,6 +78,7 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        ClientStore.setCurrentUser(null);
         return "redirect:/";
     }
 }

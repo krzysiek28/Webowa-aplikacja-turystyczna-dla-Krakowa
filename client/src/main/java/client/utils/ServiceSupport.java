@@ -10,6 +10,8 @@ import java.net.URI;
 
 public final class ServiceSupport {
 
+    private ServiceSupport(){}
+
     public static void requestDeleteByUri(URI uri, UserAuthenticationService userAuthenticationService, RestTemplate restTemplate) {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer "+userAuthenticationService.getRawToken());
