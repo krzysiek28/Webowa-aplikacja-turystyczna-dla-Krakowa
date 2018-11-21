@@ -28,7 +28,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div>
-        <a class="navbar-brand" href="/">Home</a>
+        <%--<a class="navbar-brand" href="/" >Home</a>--%>
     </div>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">

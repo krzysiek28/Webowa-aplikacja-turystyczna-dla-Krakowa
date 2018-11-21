@@ -20,6 +20,11 @@ public class GeneralController {
         return "initialPage";
     }
 
+    @RequestMapping(value = "/home")
+    public String homePage() {
+        return "homePage";
+    }
+
     @ExceptionHandler({ HttpServerErrorException.class})
     public String handleException(HttpServerErrorException ex) {
         JSONObject obj = null;
