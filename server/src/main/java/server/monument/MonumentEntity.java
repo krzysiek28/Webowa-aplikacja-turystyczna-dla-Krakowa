@@ -1,8 +1,5 @@
 package server.monument;
 
-import server.monument.model.Coordinates;
-import server.monument.model.MonumentKind;
-
 import javax.persistence.*;
 
 @Entity
