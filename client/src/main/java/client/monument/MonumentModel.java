@@ -25,6 +25,16 @@ public class MonumentModel {
         this.openingHours = openingHours;
     }
 
+    public MonumentModel(Integer id, String name, MonumentKind kind, String description, Coordinates coordinate, Integer cost, String openingHours) {
+        this.id = id;
+        this.name = name;
+        this.kind = kind;
+        this.description = description;
+        this.coordinate = coordinate;
+        this.cost = cost;
+        this.openingHours = openingHours;
+    }
+
     public Integer getId() {
         return id;
     }

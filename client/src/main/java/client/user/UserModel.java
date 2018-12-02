@@ -18,6 +18,15 @@ public class UserModel {
         this.enabled = enabled;
     }
 
+    public UserModel(Integer id, String username, String password, String email, String role, Boolean enabled) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+        this.enabled = enabled;
+    }
+
     public Integer getId() {
         return id;
     }

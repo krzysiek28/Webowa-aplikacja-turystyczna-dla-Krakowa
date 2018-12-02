@@ -21,6 +21,14 @@ public class CommentModel {
         this.description = description;
     }
 
+    public CommentModel(Integer id, UserModel user, MonumentModel monument, Integer rate, String description) {
+        this.id = id;
+        this.user = user;
+        this.monument = monument;
+        this.rate = rate;
+        this.description = description;
+    }
+
     public Integer getId() {
         return id;
     }
