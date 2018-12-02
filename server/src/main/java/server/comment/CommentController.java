@@ -8,6 +8,8 @@ import server.security.AuthorizationFilter;
 import server.security.ResourceType;
 import server.security.UnauthorizedException;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/comments")
 public class CommentController {
@@ -25,20 +27,20 @@ public class CommentController {
     }
 
     @RequestMapping(value = "/user/{userName}", method = RequestMethod.GET)
-    public void getAllCommentsByOwner(@PathVariable String userName, @RequestHeader("Authorization") String token) throws UnauthorizedException {
+    public List<CommentEntity> getAllCommentsByOwner(@PathVariable String userName, @RequestHeader("Authorization") String token) throws UnauthorizedException {
         String userId = jdbcTemplate.queryForObject("SELECT id from users where username=" + "\'" + userName + "\'" + ";", String.class);
         authorizationFilter.isAuthorizedTo(token, userId, ResourceType.USER);
-        commentService.getAllCommentsByOwner(Integer.parseInt(userId));
+        return commentService.getAllCommentsByOwner(Integer.parseInt(userId));
     }
 
     @RequestMapping(value = "/monument/{monumentId}", method = RequestMethod.GET)
-    public void getAllCommentsByMonument(@PathVariable String monumentId, @RequestHeader("Authorization") String token){
-        commentService.getAllCommentsByMonument(Integer.parseInt(monumentId));
+    public List<CommentEntity> getAllCommentsByMonument(@PathVariable String monumentId, @RequestHeader("Authorization") String token){
+        return commentService.getAllCommentsByMonument(Integer.parseInt(monumentId));
     }
 
     @RequestMapping(value = "/{commentId}", method = RequestMethod.GET)
-    public void getComment(@PathVariable String commentId, @RequestHeader("Authorization") String token) {
-        commentService.getComment(Integer.parseInt(commentId));
+    public CommentEntity getComment(@PathVariable String commentId, @RequestHeader("Authorization") String token) {
+        return commentService.getComment(Integer.parseInt(commentId));
     }
 
     @RequestMapping(value = "/user/{userName}", method = RequestMethod.POST)

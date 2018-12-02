@@ -37,26 +37,25 @@ public class MonumentService {
 
     public void updateMonument(Integer monumentId, MonumentEntity monument){
         if(!monumentRepository.exists(monumentId)){
-            throw new IllegalArgumentException("Komentarz nie istnieje!");
+            throw new IllegalArgumentException("Zabytek nie istnieje!");
         }
         if(!monument.validate()){
             throw new IllegalArgumentException("Podano nieprawidowe dane");
         }
-        MonumentEntity dbComment = monumentRepository.findOne(monumentId);
-        dbComment.setCoordinate(monument.getCoordinate());
-        dbComment.setCost(monument.getCost());
-        dbComment.setDescription(monument.getDescription());
-        dbComment.setKind(monument.getKind());
-        dbComment.setName(monument.getName());
-        dbComment.setOpeningHours(monument.getOpeningHours());
-        monumentRepository.save(dbComment);
+        MonumentEntity dbMonument = monumentRepository.findOne(monumentId);
+        dbMonument.setCoordinate(monument.getCoordinate());
+        dbMonument.setCost(monument.getCost());
+        dbMonument.setDescription(monument.getDescription());
+        dbMonument.setKind(monument.getKind());
+        dbMonument.setName(monument.getName());
+        dbMonument.setOpeningHours(monument.getOpeningHours());
+        monumentRepository.save(dbMonument);
     }
 
     public void deleteMonument(Integer monumentId){
         if(!monumentRepository.exists(monumentId)){
-            throw new IllegalArgumentException("Komentarz nie istnieje!");
+            throw new IllegalArgumentException("Zabytek nie istnieje!");
         }
         monumentRepository.delete(monumentId);
     }
-
 }

@@ -3,6 +3,8 @@ package server.monument;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/monuments")
 public class MonumentController {
@@ -20,8 +22,8 @@ public class MonumentController {
 
     //usunac i zrobic filtry po stronie serwera w razie problemow.
     @RequestMapping(value = "/kind/{kind}", method = RequestMethod.GET)
-    public void getMonumentsByKind(@PathVariable String kind, @RequestHeader("Authorization") String token) {
-        monumentService.getMonumentsByKind(kind);
+    public List<MonumentEntity> getMonumentsByKind(@PathVariable String kind, @RequestHeader("Authorization") String token) {
+        return monumentService.getMonumentsByKind(kind);
     }
 
     @RequestMapping(method = RequestMethod.POST)

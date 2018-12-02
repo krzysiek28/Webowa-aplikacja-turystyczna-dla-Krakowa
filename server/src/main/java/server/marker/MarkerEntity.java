@@ -12,7 +12,7 @@ public class MarkerEntity {
     private Integer id;
     private String name;
     private String type;
-    private String descripiton;
+    private String description;
     private String coordinate;
     @ManyToOne
     private UserEntity owner;
@@ -20,10 +20,10 @@ public class MarkerEntity {
     public MarkerEntity() {
     }
 
-    public MarkerEntity(String name, String type, String descripiton, String coordinate, UserEntity owner) {
+    public MarkerEntity(String name, String type, String description, String coordinate, UserEntity owner) {
         this.name = name;
         this.type = type;
-        this.descripiton = descripiton;
+        this.description = description;
         this.coordinate = coordinate;
         this.owner = owner;
     }
@@ -52,12 +52,12 @@ public class MarkerEntity {
         this.type = type;
     }
 
-    public String getDescripiton() {
-        return descripiton;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescripiton(String descripiton) {
-        this.descripiton = descripiton;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getCoordinate() {
@@ -74,5 +74,10 @@ public class MarkerEntity {
 
     public void setOwner(UserEntity owner) {
         this.owner = owner;
+    }
+
+    public boolean validate(){
+        return !(this.getCoordinate().isEmpty() || this.getName().isEmpty() || this.getDescription().isEmpty()
+                || this.getType().isEmpty() || this.getOwner() ==  null);
     }
 }
