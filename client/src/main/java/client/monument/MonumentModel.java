@@ -10,13 +10,13 @@ public class MonumentModel {
     private MonumentKind kind; //translate or change to string
     private String description;
     private Coordinates coordinate; //translate or change to string
-    private Integer cost;
+    private Double cost;
     private String openingHours;
 
     public MonumentModel() {
     }
 
-    public MonumentModel(String name, MonumentKind kind, String description, Coordinates coordinate, Integer cost, String openingHours) {
+    public MonumentModel(String name, MonumentKind kind, String description, Coordinates coordinate, Double cost, String openingHours) {
         this.name = name;
         this.kind = kind;
         this.description = description;
@@ -25,7 +25,7 @@ public class MonumentModel {
         this.openingHours = openingHours;
     }
 
-    public MonumentModel(Integer id, String name, MonumentKind kind, String description, Coordinates coordinate, Integer cost, String openingHours) {
+    public MonumentModel(Integer id, String name, MonumentKind kind, String description, Coordinates coordinate, Double cost, String openingHours) {
         this.id = id;
         this.name = name;
         this.kind = kind;
@@ -75,11 +75,11 @@ public class MonumentModel {
         this.coordinate = coordinate;
     }
 
-    public Integer getCost() {
+    public Double getCost() {
         return cost;
     }
 
-    public void setCost(Integer cost) {
+    public void setCost(Double cost) {
         this.cost = cost;
     }
 

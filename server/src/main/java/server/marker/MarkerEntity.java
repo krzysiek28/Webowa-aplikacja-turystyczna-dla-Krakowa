@@ -5,6 +5,7 @@ import server.user.UserEntity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "markers")
 public class MarkerEntity {
 
     @Id

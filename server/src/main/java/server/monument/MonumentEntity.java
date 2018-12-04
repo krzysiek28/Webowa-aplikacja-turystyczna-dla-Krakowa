@@ -3,7 +3,7 @@ package server.monument;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Monuments")
+@Table(name = "monuments")
 public class MonumentEntity {
 
     @Id
@@ -14,12 +14,12 @@ public class MonumentEntity {
     private String kind;
     private String description;
     private String coordinate;
-    private Integer cost;
+    private Double cost;
     private String openingHours;
 
     public MonumentEntity() {}
 
-    public MonumentEntity(String name, String kind, String description, String coordinate, Integer cost, String openingHours) {
+    public MonumentEntity(String name, String kind, String description, String coordinate, Double cost, String openingHours) {
         this.name = name;
         this.kind = kind;
         this.description = description;
@@ -52,11 +52,11 @@ public class MonumentEntity {
         this.description = description;
     }
 
-    public Integer getCost() {
+    public Double getCost() {
         return cost;
     }
 
-    public void setCost(Integer cost) {
+    public void setCost(Double cost) {
         this.cost = cost;
     }
 

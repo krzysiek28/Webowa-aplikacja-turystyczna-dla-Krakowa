@@ -8,11 +8,13 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(name = "mapConfiguration")
 public class MapConfigurationEntity {
 
     @Id
     @GeneratedValue
     private Integer id;
+    private String name;
     @OneToOne
     private UserEntity owner;
     @OneToMany/*(mappedBy="allowedUser")*/
