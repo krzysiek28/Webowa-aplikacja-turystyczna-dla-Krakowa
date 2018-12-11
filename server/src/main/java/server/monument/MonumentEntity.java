@@ -17,7 +17,10 @@ public class MonumentEntity {
     private Double cost;
     private String openingHours;
 
-    public MonumentEntity() {}
+    public MonumentEntity() {
+    }
+
+    public MonumentEntity(String name, String kind, String description, String coordinate, Integer cost, String openingHours) {}
 
     public MonumentEntity(String name, String kind, String description, String coordinate, Double cost, String openingHours) {
         this.name = name;

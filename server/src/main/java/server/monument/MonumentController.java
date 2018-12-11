@@ -16,11 +16,10 @@ public class MonumentController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public void getAllMonuments() {
-        monumentService.getAllMonuments();
+    public List<MonumentEntity> getAllMonuments() {
+        return monumentService.getAllMonuments();
     }
 
-    //usunac i zrobic filtry po stronie serwera w razie problemow.
     @RequestMapping(value = "/kind/{kind}", method = RequestMethod.GET)
     public List<MonumentEntity> getMonumentsByKind(@PathVariable String kind, @RequestHeader("Authorization") String token) {
         return monumentService.getMonumentsByKind(kind);

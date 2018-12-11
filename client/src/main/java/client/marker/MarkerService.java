@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -24,8 +25,10 @@ public class MarkerService {
 
     private final static String OWNER_MAPPING = "owner/";
 
+    @Autowired
     private final RestTemplate restTemplate;
 
+    @Autowired
     private final UserAuthenticationService userAuthenticationService;
 
     public MarkerService(RestTemplate restTemplate, UserAuthenticationService userAuthenticationService) {

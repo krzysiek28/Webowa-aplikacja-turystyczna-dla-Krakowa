@@ -25,6 +25,13 @@ public class GeneralController {
         return "homePage";
     }
 
+
+
+    @RequestMapping(value = "/mapPage")
+    public String mapPage() {
+        return "mapPage";
+    }
+
     @ExceptionHandler({ HttpServerErrorException.class})
     public String handleException(HttpServerErrorException ex) {
         JSONObject obj = null;

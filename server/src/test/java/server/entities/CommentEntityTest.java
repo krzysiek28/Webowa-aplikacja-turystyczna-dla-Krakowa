@@ -13,7 +13,7 @@ public class CommentEntityTest {
     private CommentEntity testedObject;
 
     private final static UserEntity user = new UserEntity("test@email.com", "testUsername", "testPassword", "USER_ROLE", true);
-    private final static MonumentEntity monument = new MonumentEntity("testName", "testKind", "testDescription", "testCoordinate", 10, "testOpeningHours");
+    private final static MonumentEntity monument = new MonumentEntity("testName", "testKind", "testDescription", "testCoordinate", (double) 10, "testOpeningHours");
     private final static Integer rate = 1;
     private final static String description = "testDescription";
 

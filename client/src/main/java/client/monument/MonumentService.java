@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -21,24 +22,23 @@ public class MonumentService {
 
     private final static String MONUMENT_BASE_URL = "http://localhost:8384/monuments/";
 
-    private final RestTemplate restTemplate;
+    @Autowired
+    RestTemplate restTemplate;
 
-    private final UserAuthenticationService userAuthenticationService;
-
-    public MonumentService(RestTemplate restTemplate, UserAuthenticationService userAuthenticationService) {
-        this.restTemplate = restTemplate;
-        this.userAuthenticationService = userAuthenticationService;
-    }
+    @Autowired
+    UserAuthenticationService userAuthenticationService;
 
     public List<MonumentModel> getAllMonuments() throws URISyntaxException, IOException, HttpClientErrorException {
         URI uri = new URI(MONUMENT_BASE_URL);
+        System.out.println(uri);
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer "+userAuthenticationService.getRawToken());
         HttpEntity<String> entity = new HttpEntity<String>(headers);
-        ResponseEntity<String> data = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
+        ResponseEntity<String> response = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
+        System.out.println("after");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        return objectMapper.readValue(data.getBody(),
+        return objectMapper.readValue(response.getBody(),
                 objectMapper.getTypeFactory().constructCollectionType(List.class, MonumentModel.class));
     }
 
