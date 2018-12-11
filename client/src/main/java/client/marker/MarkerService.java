@@ -26,15 +26,10 @@ public class MarkerService {
     private final static String OWNER_MAPPING = "owner/";
 
     @Autowired
-    private final RestTemplate restTemplate;
+    RestTemplate restTemplate;
 
     @Autowired
-    private final UserAuthenticationService userAuthenticationService;
-
-    public MarkerService(RestTemplate restTemplate, UserAuthenticationService userAuthenticationService) {
-        this.restTemplate = restTemplate;
-        this.userAuthenticationService = userAuthenticationService;
-    }
+    UserAuthenticationService userAuthenticationService;
 
     public List<MarkerModel> getAllMarkers() throws URISyntaxException, IOException, HttpClientErrorException {
         URI uri = new URI(MARKER_BASE_URL);

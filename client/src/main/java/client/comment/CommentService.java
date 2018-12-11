@@ -29,15 +29,10 @@ public class CommentService {
     private final static String MONUMENT_MAPPING = "monument/";
 
     @Autowired
-    private final RestTemplate restTemplate;
+    RestTemplate restTemplate;
 
     @Autowired
-    private final UserAuthenticationService userAuthenticationService;
-
-    public CommentService(RestTemplate restTemplate, UserAuthenticationService userAuthenticationService) {
-        this.restTemplate = restTemplate;
-        this.userAuthenticationService = userAuthenticationService;
-    }
+    UserAuthenticationService userAuthenticationService;
 
     public List<CommentModel> getCommentsByUser() throws URISyntaxException, IOException {
         String userName = userAuthenticationService.getUsername();

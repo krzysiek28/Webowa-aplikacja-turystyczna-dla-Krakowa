@@ -24,7 +24,8 @@ public class MonumentController {
     @RequestMapping(value = "/listPage")
     public String listPage(HttpServletRequest request,ModelMap modelMap) {
         try {
-            modelMap.addAttribute("monuments", monumentService.getAllMonuments());
+            monumentService.getAllMonuments();
+//            modelMap.addAttribute("monuments", monumentService.getAllMonuments());
         } catch (Exception e) {
             e.printStackTrace();
         }

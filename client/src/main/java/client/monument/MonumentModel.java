@@ -1,22 +1,19 @@
 package client.monument;
 
-import client.monument.model.Coordinates;
-import client.monument.model.MonumentKind;
-
 public class MonumentModel {
 
     private Integer id;
     private String name;
-    private MonumentKind kind; //translate or change to string
+    private String kind; //translate or change to string
     private String description;
-    private Coordinates coordinate; //translate or change to string
+    private String coordinate; //translate or change to string
     private Double cost;
     private String openingHours;
 
     public MonumentModel() {
     }
 
-    public MonumentModel(String name, MonumentKind kind, String description, Coordinates coordinate, Double cost, String openingHours) {
+    public MonumentModel(String name, String kind, String description, String coordinate, Double cost, String openingHours) {
         this.name = name;
         this.kind = kind;
         this.description = description;
@@ -25,7 +22,7 @@ public class MonumentModel {
         this.openingHours = openingHours;
     }
 
-    public MonumentModel(Integer id, String name, MonumentKind kind, String description, Coordinates coordinate, Double cost, String openingHours) {
+    public MonumentModel(Integer id, String name, String kind, String description, String coordinate, Double cost, String openingHours) {
         this.id = id;
         this.name = name;
         this.kind = kind;
@@ -51,11 +48,11 @@ public class MonumentModel {
         this.name = name;
     }
 
-    public MonumentKind getKind() {
+    public String getKind() {
         return kind;
     }
 
-    public void setKind(MonumentKind kind) {
+    public void setKind(String kind) {
         this.kind = kind;
     }
 
@@ -67,11 +64,11 @@ public class MonumentModel {
         this.description = description;
     }
 
-    public Coordinates getCoordinate() {
+    public String getCoordinate() {
         return coordinate;
     }
 
-    public void setCoordinate(Coordinates coordinate) {
+    public void setCoordinate(String coordinate) {
         this.coordinate = coordinate;
     }
 
