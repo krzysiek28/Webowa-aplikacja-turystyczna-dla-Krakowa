@@ -27,11 +27,8 @@
     <div class="listGroup" style="align-content: left; position: absolute; width: 20%; height: 100%; background-color: #6c757d">
         <div class="list-group">
             <a href="#" class="list-group-item list-group-item-action active">Monument0</a>
-            <a href="#" class="list-group-item list-group-item-action">Monument1</a>
-            <a href="#" class="list-group-item list-group-item-action">Monument2</a>
-            <a href="#" class="list-group-item list-group-item-action">Monument3</a>
             <c:forEach var="monument" items="${monuments}">
-                ${monument.name}
+                <a href="#" class="list-group-item list-group-item-action">${monument.name}</a>
             </c:forEach>
         </div>
     </div>

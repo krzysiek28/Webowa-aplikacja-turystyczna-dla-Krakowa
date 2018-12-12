@@ -9,29 +9,39 @@
 
 <div class="palette" style="alignment: right; width: 20%; position: absolute; right: 1px;">
     <div class="filterContainer" style="height: 20%;">
-        filtry
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
+            <div class="card-header">Filtry</div>
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <p class="card-text">content</p>
+                <br/>
+                <br/>
+                <br/>
+            </div>
+        </div>
     </div>
-
     <div class="markerContainer" style="height: 30%;">
-        markery
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
+            <div class="card-header">Znaczniki</div>
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <p class="card-text">content</p>
+                <br/>
+                <br/>
+                <br/>
+            </div>
+        </div>
     </div>
-
     <div class="mapConfigContainer" style="height: 30%;">
-        mapConfig
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
+            <div class="card-header">Konfiguracja mapy</div>
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <p class="card-text">content</p>
+                <br/>
+                <br/>
+                <br/>
+            </div>
+        </div>
     </div>
 </div>

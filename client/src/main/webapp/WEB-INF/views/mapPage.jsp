@@ -46,7 +46,7 @@
     <jsp:include page="mapView/palette.jsp"></jsp:include>
 
 
-<div id="map-canvas" style="height:1000px; width:1700px; width: 80%;"></div>
+<div id="map-canvas" style="height:670px; width:1700px; width: 80%;"></div>
 
 </body>
 
