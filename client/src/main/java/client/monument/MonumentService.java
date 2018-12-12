@@ -2,6 +2,7 @@ package client.monument;
 
 import client.utils.ServiceSupport;
 import client.user.authentication.UserAuthenticationService;
+import client.utils.StringConstants;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONException;
@@ -20,7 +21,7 @@ import java.util.List;
 @Service
 public class MonumentService {
 
-    private final static String MONUMENT_BASE_URL = "http://localhost:8384/monuments/";
+    private final static String MONUMENT_BASE_URL = "http://localhost:8384/monuments";
 
     @Autowired
     RestTemplate restTemplate;
@@ -62,7 +63,7 @@ public class MonumentService {
 
     public void updateMonument(Integer monumentId, String name, String kind, String description, String coordinate,
                                Integer cost, String openingHours) throws JSONException, URISyntaxException, HttpClientErrorException {
-        URI uri = new URI(MONUMENT_BASE_URL + monumentId);
+        URI uri = new URI(MONUMENT_BASE_URL + StringConstants.SLASH + monumentId);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.set("Authorization", "Bearer "+userAuthenticationService.getRawToken());
@@ -79,7 +80,7 @@ public class MonumentService {
     }
 
     public void deleteMonument(Integer monumentId) throws URISyntaxException {
-        URI uri = new URI(MONUMENT_BASE_URL + monumentId);
+        URI uri = new URI(MONUMENT_BASE_URL + StringConstants.SLASH + monumentId);
         ServiceSupport.requestDeleteByUri(uri, userAuthenticationService, restTemplate);
     }
 }

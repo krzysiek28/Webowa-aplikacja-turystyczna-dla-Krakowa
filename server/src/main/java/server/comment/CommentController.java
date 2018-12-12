@@ -10,7 +10,7 @@ import server.security.UnauthorizedException;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/comments")
 public class CommentController {
 

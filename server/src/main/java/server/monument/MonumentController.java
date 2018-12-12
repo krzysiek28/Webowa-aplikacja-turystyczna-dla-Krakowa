@@ -1,11 +1,10 @@
 package server.monument;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/monuments")
 public class MonumentController {
 
@@ -16,7 +15,7 @@ public class MonumentController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<MonumentEntity> getAllMonuments() {
+    public List<MonumentEntity> getAllMonuments(@RequestHeader("Authorization") String token) {
         return monumentService.getAllMonuments();
     }
 
