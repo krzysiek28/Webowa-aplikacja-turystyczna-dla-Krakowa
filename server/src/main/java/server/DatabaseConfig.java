@@ -9,8 +9,6 @@ import java.net.URISyntaxException;
 
 @Configuration
 public class DatabaseConfig {
-
-
     private String dbUrl;
 
     private String userName;
@@ -27,12 +25,10 @@ public class DatabaseConfig {
 
     @Bean
     public BasicDataSource dataSource() throws URISyntaxException {
-
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setUrl(dbUrl);
         basicDataSource.setUsername(userName);
         basicDataSource.setPassword(password);
-
         return basicDataSource;
     }
 }
