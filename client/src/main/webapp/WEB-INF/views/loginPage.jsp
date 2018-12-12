@@ -43,7 +43,7 @@
         Logowanie:
     </div>
     <div class="card-body">
-        <c:url var="loginUrl" value="/loginPage" />
+        <c:url var="loginUrl" value="/loginPage"/>
         <form action="/login" method="post" class="form-horizontal">
             <c:if test="${param.error == 'loginfirst'}">
                 <div class="alert alert-danger">

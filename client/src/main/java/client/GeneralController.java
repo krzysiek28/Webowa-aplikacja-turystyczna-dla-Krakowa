@@ -6,28 +6,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 @Controller
 public class GeneralController {
 
-    @Autowired
-    private RestTemplate restTemplate;
-
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String initialPage(){
         return "initialPage";
     }
 
-    @RequestMapping(value = "/home")
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String homePage() {
         return "homePage";
     }
 
 
 
-    @RequestMapping(value = "/mapPage")
+    @RequestMapping(value = "/mapPage", method = RequestMethod.GET)
     public String mapPage() {
         return "mapPage";
     }

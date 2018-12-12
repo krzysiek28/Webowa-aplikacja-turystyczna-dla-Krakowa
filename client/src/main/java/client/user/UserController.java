@@ -32,7 +32,7 @@ public class UserController {
         } catch (HttpStatusCodeException exception) {
             JSONObject obj = new JSONObject(exception.getResponseBodyAsString());
             String errorMessage = obj.getString("message");
-            return "redirect:/loginPage?error=badcredentials&message=" + errorMessage; //fill
+            return "redirect:/loginPage?error=badcredentials&message=" + errorMessage;
         }
         ClientStore.setCurrentUser(userService.getCurrentUser());
         return "redirect:/homePage";
