@@ -5,6 +5,7 @@ import client.user.UserModel;
 import client.user.authentication.UserAuthenticationService;
 import client.utils.ClientStore;
 import client.utils.ServiceSupport;
+import client.utils.StringConstants;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONException;
@@ -22,11 +23,11 @@ import java.util.List;
 @Service
 public class CommentService {
 
-    private final static String COMMENT_BASE_URL = "http://localhost:8384/comments/";
+    private final static String COMMENT_BASE_URL = "http://localhost:8384/comments";
 
-    private final static String USER_MAPPING = "user/";
+    private final static String USER_MAPPING = "/user";
 
-    private final static String MONUMENT_MAPPING = "monument/";
+    private final static String MONUMENT_MAPPING = "/monument";
 
     @Autowired
     RestTemplate restTemplate;
@@ -36,7 +37,7 @@ public class CommentService {
 
     public List<CommentModel> getCommentsByUser() throws URISyntaxException, IOException {
         String userName = userAuthenticationService.getUsername();
-        URI uri = new URI(COMMENT_BASE_URL + USER_MAPPING + userName);
+        URI uri = new URI(COMMENT_BASE_URL + USER_MAPPING + StringConstants.SLASH + userName);
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + userAuthenticationService.getRawToken());
         HttpEntity<String> entity = new HttpEntity<String>(headers);
@@ -49,7 +50,7 @@ public class CommentService {
 
     public void addComment(MonumentModel monument, Integer rate, String description) throws URISyntaxException, JSONException {
         String userName = userAuthenticationService.getUsername();
-        URI uri = new URI(COMMENT_BASE_URL + USER_MAPPING + userName);
+        URI uri = new URI(COMMENT_BASE_URL + USER_MAPPING + StringConstants.SLASH + userName);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.set("Authorization", "Bearer " + userAuthenticationService.getRawToken());
@@ -65,7 +66,7 @@ public class CommentService {
     }
 
     public List<CommentModel> getCommentsByMonument(Integer monumentId) throws URISyntaxException, IOException {
-        URI uri = new URI(COMMENT_BASE_URL + MONUMENT_MAPPING + monumentId);
+        URI uri = new URI(COMMENT_BASE_URL + MONUMENT_MAPPING + StringConstants.SLASH + monumentId);
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer "+userAuthenticationService.getRawToken());
         HttpEntity<String> entity = new HttpEntity<String>(headers);
@@ -77,7 +78,7 @@ public class CommentService {
     }
 
     public CommentModel getCommentById(Integer commentId) throws URISyntaxException, IOException {
-        URI uri = new URI(COMMENT_BASE_URL + commentId);
+        URI uri = new URI(COMMENT_BASE_URL + StringConstants.SLASH + commentId);
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer "+userAuthenticationService.getRawToken());
         HttpEntity<String> entity = new HttpEntity<String>(headers);
@@ -89,7 +90,7 @@ public class CommentService {
     }
 
     public void updateComment(Integer commentId, MonumentModel monument, Integer rate, String description) throws URISyntaxException, JSONException {
-        URI uri = new URI(COMMENT_BASE_URL + commentId);
+        URI uri = new URI(COMMENT_BASE_URL + StringConstants.SLASH + commentId);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.set("Authorization", "Bearer "+userAuthenticationService.getRawToken());
@@ -105,7 +106,7 @@ public class CommentService {
     }
 
     public void deleteComment(Integer commentId) throws URISyntaxException {
-        URI uri = new URI(COMMENT_BASE_URL + commentId);
+        URI uri = new URI(COMMENT_BASE_URL + StringConstants.SLASH + commentId);
         ServiceSupport.requestDeleteByUri(uri, userAuthenticationService, restTemplate);
     }
 }

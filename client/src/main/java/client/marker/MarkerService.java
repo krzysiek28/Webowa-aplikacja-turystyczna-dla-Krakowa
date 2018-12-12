@@ -3,6 +3,7 @@ package client.marker;
 import client.user.UserModel;
 import client.user.authentication.UserAuthenticationService;
 import client.utils.ServiceSupport;
+import client.utils.StringConstants;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONException;
@@ -21,9 +22,9 @@ import java.util.List;
 @Service
 public class MarkerService {
 
-    private final static String MARKER_BASE_URL = "http://localhost:8384/marker/";
+    private final static String MARKER_BASE_URL = "http://localhost:8384/marker";
 
-    private final static String OWNER_MAPPING = "owner/";
+    private final static String OWNER_MAPPING = "/owner";
 
     @Autowired
     RestTemplate restTemplate;
@@ -44,7 +45,7 @@ public class MarkerService {
     }
 
     public List<MarkerModel> getAllMarkersByOwner(Integer ownerId) throws URISyntaxException, IOException, HttpClientErrorException {
-        URI uri = new URI(MARKER_BASE_URL + OWNER_MAPPING + ownerId.toString());
+        URI uri = new URI(MARKER_BASE_URL + OWNER_MAPPING + StringConstants.SLASH +  ownerId.toString());
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + userAuthenticationService.getRawToken());
         HttpEntity<String> entity = new HttpEntity<String>(headers);
@@ -57,7 +58,7 @@ public class MarkerService {
 
     public void addMarker(String name, String type, String description, String coordinate, UserModel user)
             throws JSONException, URISyntaxException, HttpClientErrorException {
-        URI uri = new URI(MARKER_BASE_URL );
+        URI uri = new URI(MARKER_BASE_URL);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.set("Authorization", "Bearer "+userAuthenticationService.getRawToken());
@@ -90,7 +91,7 @@ public class MarkerService {
     }
 
     public void deleteMarker(Integer markerId) throws URISyntaxException {
-        URI uri = new URI(MARKER_BASE_URL + markerId);
+        URI uri = new URI(MARKER_BASE_URL + StringConstants.SLASH +  markerId);
         ServiceSupport.requestDeleteByUri(uri, userAuthenticationService, restTemplate);
     }
 }
