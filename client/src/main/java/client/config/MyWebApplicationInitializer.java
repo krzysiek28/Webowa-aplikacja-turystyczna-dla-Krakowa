@@ -12,7 +12,6 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
 
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
-
         servletContext.setAttribute("info", "hello from context!");
 
         XmlWebApplicationContext appContext = new XmlWebApplicationContext();

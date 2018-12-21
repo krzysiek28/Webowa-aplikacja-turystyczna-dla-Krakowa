@@ -24,7 +24,7 @@ public class MonumentController {
         this.monumentService = monumentService;
     }
 
-    @RequestMapping(value = "/listPage", method= RequestMethod.GET)
+    @RequestMapping(value = "/listPage", method = RequestMethod.GET)
     public String listPage(HttpServletRequest request,ModelMap modelMap) throws JSONException {
         try {
             modelMap.addAttribute("monuments", monumentService.getAllMonuments());

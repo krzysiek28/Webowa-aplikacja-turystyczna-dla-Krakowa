@@ -10,9 +10,7 @@ public class SeleniumTest {
     protected void prepareChromeDriver(){
         System.setProperty("webdriver.chrome.driver",
                 "./src/test/resources/drivers/chromedriver.exe");
-        // Launch Chrome
         driver = new ChromeDriver();
-        // Maximize the browser window
         driver.manage().window().maximize();
     }
 

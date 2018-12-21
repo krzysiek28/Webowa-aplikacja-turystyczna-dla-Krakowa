@@ -10,9 +10,7 @@ import java.net.URISyntaxException;
 @Configuration
 public class DatabaseConfig {
     private String dbUrl;
-
     private String userName;
-
     private String password;
 
     public DatabaseConfig(@Value("${spring.datasource.url}") String dbUrl, @Value("${spring.datasource.data-username}")

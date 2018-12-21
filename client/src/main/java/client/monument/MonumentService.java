@@ -31,7 +31,6 @@ public class MonumentService {
 
     public List<MonumentModel> getAllMonuments() throws URISyntaxException, IOException, HttpClientErrorException {
         URI uri = new URI(MONUMENT_BASE_URL);
-        System.out.println(uri);
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer "+userAuthenticationService.getRawToken());
         HttpEntity<String> entity = new HttpEntity<String>(headers);

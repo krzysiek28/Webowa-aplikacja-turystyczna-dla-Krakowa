@@ -10,12 +10,9 @@
 "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<c:if test="${authservice.isLoggedIn() == false}">
-    <c:redirect url="/"/>
-</c:if>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html"; charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
     <title>TouristApp</title>
     <link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"></link>
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
@@ -26,13 +23,21 @@
 
     <div class="listGroup" style="align-content: left; position: absolute; width: 20%; height: 100%; background-color: #6c757d">
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action active">Monument0</a>
             <c:forEach var="monument" items="${monuments}">
-                <a href="#" class="list-group-item list-group-item-action">${monument.name}</a>
+                <a <%--href="#"--%> class="list-group-item list-group-item-action" onclick="changeActiveClass()">${monument.name}</a>
             </c:forEach>
         </div>
     </div>
 
+    <script>
+        function changeActiveClass() {
+            $(".list-group-item").on("click",function(){
+                $(".list-group-item.active").removeClass('active');
+                $(this).addClass('active');
+            });
+        }
+
+    </script>
 
 
 </body>

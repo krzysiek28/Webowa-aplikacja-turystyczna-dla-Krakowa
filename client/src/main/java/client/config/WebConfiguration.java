@@ -27,15 +27,13 @@ import javax.annotation.PostConstruct;
 @Configuration
 @ComponentScan("client")
 @PropertySource("classpath:application.properties")
-
 public class WebConfiguration extends WebMvcConfigurerAdapter {
 
     @Autowired
     UserAuthenticationService userAuthenticationService;
 
     @Bean
-    public MappedInterceptor myInterceptor()
-    {
+    public MappedInterceptor myInterceptor() {
         String[] exclude = new String[6];
         exclude[0] = "/";
         exclude[1] = "/loginPage";
@@ -84,7 +82,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public RestTemplate restTemplateHCCHRF() {
+    public RestTemplate restTemplate() {
         return new RestTemplate(new HttpComponentsClientHttpRequestFactory());
     }
 }

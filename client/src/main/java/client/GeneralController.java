@@ -2,13 +2,11 @@ package client;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.HttpServerErrorException;
-import org.springframework.web.client.RestTemplate;
 
 @Controller
 public class GeneralController {
@@ -22,8 +20,6 @@ public class GeneralController {
     public String homePage() {
         return "homePage";
     }
-
-
 
     @RequestMapping(value = "/mapPage", method = RequestMethod.GET)
     public String mapPage() {
